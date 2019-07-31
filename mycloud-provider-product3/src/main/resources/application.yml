@@ -1,0 +1,40 @@
+server:
+  port: 8082
+mybatis:
+  mapper-locations: # 所有的mapper映射文件
+    - classpath:mapping/*.xml #注意这里:后面不能有空格，这是个数组的值
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource # 配置当前要使用的数据源的操作类型
+    driver-class-name: com.mysql.jdbc.Driver # 配置MySQL的驱动程序类
+    url: jdbc:mysql://localhost:3306/mycloud3?serverTimezone=GMT%2B8 # 数据库连接地址
+    username: root # 数据库用户名
+    password: 1234qwer # 数据库连接密码
+  application:
+    name: mycloud-provider-product
+#  security:
+#    user:
+#      name: admin #认证用户名
+#      password: 12345678 #密码
+#      roles:
+#        - USER #角色
+logging:
+  level:
+    com.sg.mycloud.mapper: debug
+
+eureka:
+  client: # 客户端进行Eureka注册的配置
+    service-url:
+#      defaultZone: http://localhost:7001/eureka
+#      defaultZone: http://admin:87654321@localhost:7001/eureka #增加用户、密码验证
+      defaultZone: http://admin:87654321@eureka:7001/eureka,http://admin:87654321@eureka2:7002/eureka,http://admin:87654321@eureka3:7003/eureka
+  instance:
+    instance-id: mycloud-provider-product3
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 2 #设置心跳的时间间隔（默认是30秒）
+    lease-expiration-duration-in-seconds: 5 #如果超过了5秒的间隔未收到心跳则移除（默认是90秒）
+info:
+  app.name: mycloud-provider-product3
+  company.name: sg
+  build.artifactId: $project.artifactId$
+  build.modelVersion: $project.modelVersion$

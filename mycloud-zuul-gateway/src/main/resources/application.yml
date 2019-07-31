@@ -1,0 +1,37 @@
+server:
+  port: 9501
+eureka:
+  client:
+    register-with-eureka: true # 注册到eureka
+    service-url:
+      defaultZone: http://admin:87654321@eureka:7001/eureka,http://admin:87654321@eureka2:7002/eureka,http://admin:87654321@eureka3:7003/eureka
+  instance:
+    instance-id: mycloud-zuul-gateway
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 2 #设置心跳的时间间隔（默认是30秒）
+    lease-expiration-duration-in-seconds: 5 #如果超过了5秒的间隔未收到心跳则移除（默认是90秒）
+spring:
+  application:
+    name: mycloud-zuul-gateway
+  security:
+    user:
+      name: admin
+      password: zuul
+zuul:
+  routes: # 方式二
+    user:
+      path: /user-proxy/**
+      serviceId: mycloud-provider-user
+    user2:
+      path: /user2-proxy/**
+      url: http://localhost:8090/
+    product:
+      path: /product-proxy/**
+      serviceId: mycloud-provider-product
+  ignored-services: # 忽略掉直接访问服务的名称
+    "*"
+  prefix: /mycloud-api # 设置公共前缀
+#  routes: # 方式一
+#    mycloud-provider-user: /user-proxy/**
+#  ignored-services:
+#    "*"

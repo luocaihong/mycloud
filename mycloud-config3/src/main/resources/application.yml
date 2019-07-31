@@ -1,0 +1,17 @@
+server:
+  port: 7103
+spring:
+  application:
+    name: mycloud-config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/luocaihong/mycloudconfig.git
+eureka: # 将配置中心注册到eureka
+  client:
+    service-url:
+      defaultZone: http://admin:87654321@localhost:7301/eureka
+  instance:
+    prefer-ip-address: true # 在地址栏上使用IP地址进行显示
+    instance-id: microcloud-config3

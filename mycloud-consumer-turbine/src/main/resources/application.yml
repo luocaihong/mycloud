@@ -1,0 +1,10 @@
+server:
+  port: 9101
+eureka:
+  client:
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://admin:87654321@eureka:7001/eureka,http://admin:87654321@eureka2:7002/eureka,http://admin:87654321@eureka3:7003/eureka
+turbine:
+  app-config: MYCLOUD-PROVIDER-PRODUCT,MYCLOUD-PROVIDER-USER  # 可以发现对于turbine，其实是从eureka配置在app-config中服务，然后进行监控
+  cluster-name-expression: new String("default")

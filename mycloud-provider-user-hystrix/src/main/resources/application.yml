@@ -1,0 +1,26 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: mycloud-provider-user
+
+eureka:
+  client: # 客户端进行Eureka注册的配置
+    service-url:
+      defaultZone: http://admin:87654321@eureka:7001/eureka,http://admin:87654321@eureka2:7002/eureka,http://admin:87654321@eureka3:7003/eureka
+  instance:
+    instance-id: mycloud-provider-user
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 2 #设置心跳的时间间隔（默认是30秒）
+    lease-expiration-duration-in-seconds: 5 #如果超过了5秒的间隔未收到心跳则移除（默认是90秒）
+info:
+  app.name: mycloud-provider-user
+  company.name: sg
+  build.artifactId: $project.artifactId$
+  build.modelVersion: $project.modelVersion$
+
+management: # hystrix服务监控
+  endpoints:
+    web:
+      exposure:
+        include: '*'

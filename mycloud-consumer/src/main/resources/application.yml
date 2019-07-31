@@ -1,0 +1,7 @@
+server:
+  port: 80
+eureka:
+  client:
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://admin:87654321@eureka:7001/eureka,http://admin:87654321@eureka2:7002/eureka,http://admin:87654321@eureka3:7003/eureka

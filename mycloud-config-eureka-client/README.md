@@ -1,0 +1,3 @@
+该模块是在mycloud-eureka基础上，读取配置中心的配置文件
+
+即git仓库中mycloudconfig的mycloud-config-eureka-client.yml

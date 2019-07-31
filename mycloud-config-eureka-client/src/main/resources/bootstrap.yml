@@ -1,0 +1,9 @@
+spring:
+  cloud:
+    config:
+      uri:  http://localhost:7101 # SpringCloudConfig的服务地址，即mycloud-config模块的地址
+      name: mycloud-config-eureka-client # 定义要读取的资源文件的名称
+      profile:  beta # 定义profile的 名称
+      label:  master # 定义配置文件所在的分支
+      username: admin # 连接SpringCloudConfig服务的用户名
+      password: 12345678 # 连接的密码

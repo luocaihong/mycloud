@@ -1,0 +1,17 @@
+spring:
+  cloud:
+    config:
+      name: mycloud-config-client # 定义要读取的资源文件的名称
+      profile: dev # 定义profile的 名称
+      label: master # 定义配置文件所在的分支
+#      uri: http://localhost:7101 # SpringCloudConfig的服务地址，即mycloud-config模块的地址
+      username: admin # 连接SpringCloudConfig服务的用户名
+      password: 12345678 # 连接的密码
+      discovery: # 之前是通过uri方式找到SpringCloudConfig的服务地址
+        enabled: true   # 通过配置中心加载配置文件
+        service-id: MYCLOUD-CONFIG   # 在eureka之中注册的服务ID
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:87654321@localhost:7301/eureka # 新搭建的eureka模块mycloud-config-eureka，只负责配置中心的注册
+#      defaultZone: http://admin:87654321@eureka:7001/eureka,http://admin:87654321@eureka2:7002/eureka,http://admin:87654321@eureka3:7003/eureka # 也可以继续使用原来的eureka
