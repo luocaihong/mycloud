@@ -38,6 +38,7 @@
         <module>mycloud-config-bus-client</module>
         <module>mycloud-stream-provider</module>
         <module>mycloud-stream-consumer</module>
+        <module>mycloud-nacos-config</module>
     </modules>
 
     <properties>
